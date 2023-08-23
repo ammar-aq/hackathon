@@ -9,3 +9,4 @@ export const cartColumns = pgTable("cartData", {
 });
 
 export const db = drizzle(sql);
+
