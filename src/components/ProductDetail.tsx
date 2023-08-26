@@ -7,6 +7,40 @@ export default function ProductDetails({
 }: {
   filteredData: any;
 }) {
+  const [quantity, setQuantity] = useState(1);
+
+  // console.log("filteredData", filteredData);
+
+  function handleIncrement() {
+    setQuantity(quantity + 1);
+  }
+  function handleDecrement() {
+    setQuantity(quantity - 1);
+  }
+  async function handleAddToCart() {
+    // console.log("function running")
+    try {
+      const res = await fetch("/api/cart", {
+        method: "POST",
+        body: JSON.stringify({
+            // user_id: "Asdsffd",
+            // product_id: "raza",
+            // product_title: "ahmed",
+            // product_price: 111,
+            // product_quantity: 12,
+            // image_url: "ahned"
+            user_id: "qwerty",
+            product_id: filteredData._id,
+            product_title: filteredData.title,
+            product_price: filteredData.price * quantity,
+            product_quantity: quantity,
+            image_url: urlForImage(filteredData.image).url(),
+        }),
+      });
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
 
   return (
     <div className="bg-white">
@@ -38,7 +72,7 @@ export default function ProductDetails({
               </div>
             </div>
 
-            {/* <div className="mt-5 lg:col-span-6">
+            <div className="mt-5 lg:col-span-6">
               <div className="flex border w-fit mt-5">
                 <button
                   onClick={() => handleDecrement()}
@@ -74,7 +108,7 @@ export default function ProductDetails({
                 <div className="prose prose-sm mt-4 text-gray-500" />
                 {filteredData.description}
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

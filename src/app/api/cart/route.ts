@@ -11,12 +11,21 @@ export const POST = async(request: NextRequest) => {
             image_url: req.image_url,
             product_price: req.product_price,
             product_quantity: req.product_quantity,
-        }).returning();
+        })
+        // .onConflictDoUpdate({
+        //     target: [cartColumns.user_id, cartColumns.product_title],
+        //     set: {
+        //       product_quantity: req.product_quantity,
+        //       product_price: req.product_price,
+        //     },
+        //   })
+        .returning();
         console.log("Data Posted To Database");
         return NextResponse.json({res});
             
     } catch (error) {
         console.log("Error While Posting Data To Database") 
         console.log("error", error)
+        return NextResponse.json({ message: "Something Went Wrong" });
     }
-}
+};
