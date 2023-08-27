@@ -23,12 +23,6 @@ export default function ProductDetails({
       const res = await fetch("/api/cart", {
         method: "POST",
         body: JSON.stringify({
-            // user_id: "Asdsffd",
-            // product_id: "raza",
-            // product_title: "ahmed",
-            // product_price: 111,
-            // product_quantity: 12,
-            // image_url: "ahned"
             user_id: "qwerty",
             product_id: filteredData._id,
             product_title: filteredData.title,

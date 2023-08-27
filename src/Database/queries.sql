@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS cartdata(
     product_quantity int NOT NULL,
     image_url text NOT NULL
 )
-ALTER TABLE data
+ALTER TABLE cartdata
 ADD CONSTRAINT UNIQUENESS UNIQUE (
-    product_id
+    product_title
 );
